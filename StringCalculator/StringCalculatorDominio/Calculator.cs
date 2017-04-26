@@ -11,10 +11,18 @@ namespace StringCalculatorDominio
         int DEFAULT_VALUE = 0;
 
         public int Add(string numbers)
-        {           
-            if (HasNumbers(numbers))
-                return AddMultipleNumbers(Particionar(numbers));                
-            return DEFAULT_VALUE;
+        {
+            try
+            {
+                if (HasNumbers(numbers))
+                    return AddMultipleNumbers(Particionar(numbers));
+                return DEFAULT_VALUE;
+            }
+            catch (Exception)
+            {
+                throw new NotANumberException();
+            }
+            
         }
 
         private int AddMultipleNumbers(string[] numbers)
